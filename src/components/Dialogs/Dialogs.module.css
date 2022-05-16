@@ -1,0 +1,15 @@
+.dialogs {
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+}
+
+.dialogsItem {
+    padding: 20px;
+}
+
+
+.messages {
+    padding: 20px;
+    color: #010024;
+    font-weight: 600;
+}
