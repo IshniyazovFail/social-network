@@ -10,7 +10,7 @@ export const Dialogs = (p:messagesPageType) => {
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItem}>
-                {p.dialogs.map(d => <DialogItem name={d.name} id={d.id}/>)}
+                {p.dialogs.map(d => <DialogItem ava={d.ava} name={d.name} id={d.id} />)}
             </div>
             <div className={s.messages}>
                 {p.messages.map(m => <Message message={m.message}/>)}

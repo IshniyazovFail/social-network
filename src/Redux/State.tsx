@@ -2,8 +2,9 @@ import React from "react";
 
 
  type dialogType = {
-    id: number,
+    id: number
     name: string
+     ava:string
 }
  type messageType = {
     id: number,
@@ -42,12 +43,12 @@ export let state: StateType = {
             {id: 4, message: 'Yo'}
         ],
         dialogs: [
-            {id: 1, name: 'Alex'},
-            {id: 2, name: 'Ilnar'},
-            {id: 3, name: 'Roman'},
-            {id: 4, name: 'Vladislav'},
-            {id: 5, name: 'Vataliy'},
-            {id: 6, name: 'Rafael'}
+            {id: 1, name: 'Alex' , ava:'https://coolsen.ru/wp-content/uploads/2021/06/108-8.jpg'},
+            {id: 2, name: 'Ilnar',ava:'https://cdn1.flamp.ru/7fe155666c28bd193c62337256d993d8.jpg'},
+            {id: 3, name: 'Roman', ava:'https://zooclub.ru/attach/16000/16955.jpg'},
+            {id: 4, name: 'Vladislav', ava:'https://cache3.youla.io/files/images/720_720_out/59/c7/59c7eff86c86cb05c44a9592.jpg'},
+            {id: 5, name: 'Vataliy', ava:'https://c.wallhere.com/photos/0a/24/cat_glasses_animals_selective_coloring_digital_art-210125.jpg!d'},
+            {id: 6, name: 'Rafael', ava:'https://i.ytimg.com/vi/-yTz3IasQeQ/maxresdefault.jpg'}
         ]
 
     }
