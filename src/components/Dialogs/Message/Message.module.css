@@ -1,0 +1,19 @@
+.body{
+
+}
+.message{
+    background-color: white;
+    width: 200px;
+    border-radius: 5px;
+    margin:10px 0 ;
+    padding: 5px;
+}
+.myMessage{
+    background-color: aquamarine;
+    width: 200px;
+    border-radius: 5px;
+    margin-left:500px  ;
+    padding: 5px;
+
+
+}
