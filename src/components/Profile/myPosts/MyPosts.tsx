@@ -1,23 +1,26 @@
-import React from "react";
+import React, {ChangeEvent} from "react";
 import {Post} from "./posts/Post";
 import s from "./MyPosts.module.css"
-import {PostType} from "../../../Redux/State";
+import {PostType, state} from "../../../Redux/State";
+import {renderTree} from "../../../Render";
 
 
 type myPostType = {
     postData: Array<PostType>
     addPost: (postText: string) => void
+    addNewMessage:(NewText:string)=>void
+    message:string
 }
 
 
 export const MyPosts = (p: myPostType) => {
 
-    let newPostElement = React.createRef<HTMLTextAreaElement>();
+    const onChangeHandler=(e:ChangeEvent<HTMLTextAreaElement>)=>{
+        p.addNewMessage(e.currentTarget.value)
+    }
 
     const onclickSubmitHandler = () => {
-        if (newPostElement.current) {
-            p.addPost(newPostElement.current.value)
-        }
+            p.addPost(p.message)
     }
 
     return (
@@ -25,7 +28,7 @@ export const MyPosts = (p: myPostType) => {
             <h3>My posts</h3>
             <div>
                 <div>
-                    <textarea ref={newPostElement}></textarea>
+                    <textarea  value={p.message} onChange={onChangeHandler}></textarea>
                 </div>
                 <div className={s.button}>
                     <button onClick={onclickSubmitHandler}>Submit</button>

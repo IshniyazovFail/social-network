@@ -13,8 +13,9 @@ import {Friends} from "./components/Friends/Friends";
 
 type AppType={
     addPost:(postText:string)=>void
-    profilePage: profilePageType,
+    profilePage: profilePageType
     messagesPage: messagesPageType
+    addNewMessage:(NewText:string)=>void
 }
 
 function App(p:AppType) {
@@ -26,7 +27,7 @@ function App(p:AppType) {
                 <div className='app-wrapper-content'>
                     <Route path='/dialogs' render={() => <Dialogs messages={p.messagesPage.messages}
                                                                   dialogs={p.messagesPage.dialogs}/>}/>
-                    <Route path='/profile' render={() => <Profile addPost={p.addPost} postData={p.profilePage.postData} />}/>
+                    <Route path='/profile' render={() => <Profile addNewMessage={p.addNewMessage} messageForNewPost={p.profilePage.messageForNewPost} addPost={p.addPost} postData={p.profilePage.postData} />}/>
                     <Route path='/news' component={News}/>
                     <Route path='/music' component={Music}/>
                     <Route path='/settings' component={Settings}/>

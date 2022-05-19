@@ -23,6 +23,7 @@ export type messagesPageType = {
 }
 export type profilePageType = {
     postData: Array<PostType>
+    messageForNewPost:string
 }
 export type StateType = {
     profilePage: profilePageType,
@@ -31,6 +32,7 @@ export type StateType = {
 
 export let state: StateType = {
     profilePage: {
+        messageForNewPost: '',
         postData: [
             {id: v1(), message: 'Hello, Im Fail', likeCounts: 12},
             {id: v1(), message: 'How are you?', likeCounts: 5},
@@ -58,6 +60,11 @@ export let state: StateType = {
 export const addPost =(postText:string)=>{
      const newPost:PostType = {id:v1(), message: postText,likeCounts:0 }
      state.profilePage.postData.push(newPost)
+    renderTree(state)
+}
+export const addNewMessage =(NewText:string)=>{
+     state.profilePage.messageForNewPost=NewText;
+
     renderTree(state)
 }
 
