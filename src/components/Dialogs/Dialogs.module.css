@@ -13,3 +13,11 @@
     color: #010024;
     font-weight: 600;
 }
+.text{
+margin-top: 20px;
+    min-width: 300px;
+}
+.textButton{
+ /*   display: flex;
+    flex-direction: column;*/
+}

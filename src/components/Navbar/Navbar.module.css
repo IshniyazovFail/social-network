@@ -12,3 +12,11 @@
 .item a.active {
     color: #05c3fc;
 }
+.friends {
+    margin-top: 30px;
+}
+
+.friends a{
+    color: white;
+    text-decoration: none;
+}

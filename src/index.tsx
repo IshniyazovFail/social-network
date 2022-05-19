@@ -1,12 +1,7 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import {state} from "./Redux/State";
+import {renderTree} from "./Render";
 
 
-ReactDOM.render(
-    <App profilePage={state.profilePage}
-         messagesPage={state.messagesPage}/>,
-    document.getElementById('root')
-);
+renderTree(state);

@@ -3,7 +3,7 @@ import s from "./DialogItem.module.css"
 
 type DialogsItemType = {
     name: string
-    id: number
+    id: string
     ava:string
 }
 
