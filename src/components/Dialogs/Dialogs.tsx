@@ -1,15 +1,21 @@
-import React from "react";
+import React, {ChangeEvent} from "react";
 import s from "./Dialogs.module.css"
 import {DialogItem} from './DialogItem/DialogItem'
 import {Message} from "./Message/Message";
 import {messagesPageType} from "../../Redux/State";
 
-
-export const Dialogs = (p: messagesPageType) => {
+type DialogsType =messagesPageType&{
+    AddDialogs:(newMessage:string)=>void
+    AddNewDialogs:(title:string)=>void
+}
+export const Dialogs = (p: DialogsType) => {
     const onclickHandler=()=>{
-        alert('HI !')
+        p.AddNewDialogs(p.message)
     }
 
+    const onChangeHandlerDialogs=(e:ChangeEvent<HTMLTextAreaElement>)=>{
+        p.AddDialogs(e.currentTarget.value)
+    }
 
     return (
         <div className={s.dialogs}>
@@ -19,7 +25,7 @@ export const Dialogs = (p: messagesPageType) => {
             <div className={s.messages}>
                 {p.messages.map(m => <Message message={m.message}/>)}
                 <div className={s.textButton}>
-                    <textarea className={s.text}></textarea>
+                    <textarea value={p.message} onChange={onChangeHandlerDialogs} className={s.text}/>
                 </div>
                 <button onClick={onclickHandler} className={s.button}>send</button>
             </div>

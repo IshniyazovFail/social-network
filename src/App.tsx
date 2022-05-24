@@ -8,7 +8,7 @@ import {Profile} from "./components/Profile/Profile";
 import {News} from "./components/News/News";
 import {Music} from "./components/Music/Music";
 import {Settings} from "./components/Settings/Settings";
-import {messagesPageType, profilePageType} from "./Redux/State";
+import { messagesPageType, profilePageType} from "./Redux/State";
 import {Friends} from "./components/Friends/Friends";
 
 type AppType={
@@ -16,6 +16,8 @@ type AppType={
     profilePage: profilePageType
     messagesPage: messagesPageType
     addNewMessage:(NewText:string)=>void
+    AddDialogs:(newMessage:string)=>void
+    AddNewDialogs:(title:string)=>void
 }
 
 function App(p:AppType) {
@@ -25,7 +27,9 @@ function App(p:AppType) {
                 <Header/>
                 <Navbar/>
                 <div className='app-wrapper-content'>
-                    <Route path='/dialogs' render={() => <Dialogs messages={p.messagesPage.messages}
+                    <Route path='/dialogs' render={() => <Dialogs AddNewDialogs={p.AddNewDialogs}
+                                                                  message={p.messagesPage.message} AddDialogs={p.AddDialogs}
+                                                                  messages={p.messagesPage.messages}
                                                                   dialogs={p.messagesPage.dialogs}/>}/>
                     <Route path='/profile' render={() => <Profile addNewMessage={p.addNewMessage} messageForNewPost={p.profilePage.messageForNewPost} addPost={p.addPost} postData={p.profilePage.postData} />}/>
                     <Route path='/news' component={News}/>

@@ -20,6 +20,7 @@ import {renderTree} from "../Render";
 export type messagesPageType = {
     messages: Array<messageType>,
     dialogs: Array<dialogType>
+    message:string
 }
 export type profilePageType = {
     postData: Array<PostType>
@@ -40,6 +41,7 @@ export let state: StateType = {
             {id: v1(), message: 'Yo !', likeCounts: 9}]
     },
     messagesPage: {
+        message:"hi samurai !",
         messages: [
             {id: v1(), message: 'Hello !'},
             {id: v1(), message: 'How are you?'},
@@ -60,6 +62,7 @@ export let state: StateType = {
 export const addPost =(postText:string)=>{
      const newPost:PostType = {id:v1(), message: postText,likeCounts:0 }
      state.profilePage.postData.push(newPost)
+    state.profilePage.messageForNewPost='';
     renderTree(state)
 }
 export const addNewMessage =(NewText:string)=>{
@@ -67,6 +70,15 @@ export const addNewMessage =(NewText:string)=>{
 
     renderTree(state)
 }
-
+export const AddDialogs=(newMessage:string)=>{
+     state.messagesPage.message=newMessage;
+    renderTree(state)
+}
+export const AddNewDialogs=(title:string)=>{
+     let newDialogs:messageType = {id: v1(), message:title}
+    state.messagesPage.messages.push(newDialogs)
+    state.messagesPage.message="";
+    renderTree(state)
+}
 
 

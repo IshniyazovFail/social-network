@@ -1,11 +1,13 @@
 import React from "react";
-import {addNewMessage, addPost, StateType} from "./Redux/State";
+import {AddDialogs, AddNewDialogs, addNewMessage, addPost, StateType} from "./Redux/State";
 import ReactDOM from "react-dom";
 import App from "./App";
 
-export const renderTree=(state:StateType)=>{
+export const renderTree = (state: StateType) => {
     ReactDOM.render(
-        <App addNewMessage={addNewMessage}
+        <App AddNewDialogs={AddNewDialogs}
+             AddDialogs={AddDialogs}
+             addNewMessage={addNewMessage}
              addPost={addPost}
              profilePage={state.profilePage}
              messagesPage={state.messagesPage}/>,
