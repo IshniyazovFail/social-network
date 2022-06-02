@@ -11,9 +11,9 @@
 
 .app-wrapper-content {
     grid-area: c;
-    background-color:#05c3fc;
-    color: #010024;
+    background: linear-gradient(#010024,darkblue, lightblue);
     font-weight: 600;
+    color: white;
 }
 
 

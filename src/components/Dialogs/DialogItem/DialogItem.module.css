@@ -1,10 +1,11 @@
 .dialog a {
-    color: #010024;
+    color:white;
     text-decoration: none;
     font-weight: 600;
+    text-shadow: 1px 1px black;
 }
 .dialog a.active{
-    color:white;
+    color: #05c3fc;
 }
 .img{
     width: 50px;
