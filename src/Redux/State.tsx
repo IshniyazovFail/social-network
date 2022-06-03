@@ -55,12 +55,13 @@ type AddNewDialogsActionType={
     title:string
 }
 export type ActionsTypes=addNewMessageActionType|AddDialogsActionType|AddNewDialogsActionType|AddPostActionType
+
 export type storeType = {
     _state: StateType
-    addPost: (postText: string) => void
+/*    addPost: (postText: string) => void
     addNewMessage: (NewText: string) => void
     AddDialogs: (newMessage: string) => void
-    AddNewDialogs: (title: string) => void
+    AddNewDialogs: (title: string) => void*/
     _onChange: () => void
     subscribe: (callback: () => void) => void
     getState: () => StateType
@@ -78,7 +79,7 @@ export const store: storeType = {
                 {id: v1(), message: 'Yo !', likeCounts: 9}]
         },
         messagesPage: {
-            message: "hi samurai !",
+            message: "",
             messages: [
                 {id: v1(), message: 'Hello !'},
                 {id: v1(), message: 'How are you?'},
@@ -116,7 +117,7 @@ export const store: storeType = {
     },
 
 
-    addPost(postText: string) {
+/*    addPost(postText: string) {
         const newPost: PostType = {id: v1(), message: postText, likeCounts: 0}
         this._state.profilePage.postData.push(newPost)
         this._state.profilePage.messageForNewPost = '';
@@ -135,7 +136,7 @@ export const store: storeType = {
         this._state.messagesPage.messages.push(newDialogs)
         this._state.messagesPage.message = "";
         this._onChange()
-    },
+    },*/
 
     dispatch(action){
      if(action.type==="ADD-POST"){
@@ -155,8 +156,19 @@ export const store: storeType = {
          this._state.messagesPage.message = "";
          this._onChange()
      }
-    }
-
+    },
 
 }
 
+export const AddNewMessageAC=(text:string):addNewMessageActionType=>{
+    return{type: "ADD-NEW-MESSAGE", NewText: text}
+}
+export const AddPostAC=(text:string):AddPostActionType=>{
+    return{type: "ADD-POST", postText: text}
+}
+export const AddNewDialogsAC=(newTitle:string):AddNewDialogsActionType=>{
+    return {type:"ADD-NEW-DIALOGS",title:newTitle}
+}
+export const AddDialogsAC =(message:string):AddDialogsActionType=>{
+    return {type:"ADD-DIALOGS",newMessage:message}
+}

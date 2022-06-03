@@ -2,18 +2,18 @@ import React, {ChangeEvent} from "react";
 import s from "./Dialogs.module.css"
 import {DialogItem} from './DialogItem/DialogItem'
 import {Message} from "./Message/Message";
-import {ActionsTypes, messagesPageType} from "../../Redux/State";
+import {ActionsTypes, AddDialogsAC, AddNewDialogsAC, messagesPageType} from "../../Redux/State";
 
 type DialogsType =messagesPageType&{
     dispatch:(action:ActionsTypes)=>void
 }
 export const Dialogs = (p: DialogsType) => {
     const onclickHandler=()=>{
-        p.dispatch({type:"ADD-NEW-DIALOGS",title:p.message})
+        p.dispatch(AddNewDialogsAC(p.message))
     }
 
     const onChangeHandlerDialogs=(e:ChangeEvent<HTMLTextAreaElement>)=>{
-        p.dispatch({type:"ADD-DIALOGS",newMessage:e.currentTarget.value})
+        p.dispatch(AddDialogsAC(e.currentTarget.value))
     }
 
     return (
