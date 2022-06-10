@@ -4,16 +4,16 @@ import { store} from "./Redux/redux-store";
 import ReactDOM from "react-dom";
 import App from "./App";
 import {StateType} from "./Redux/store";
-import StoreContext from "./storeContext";
+import  {Provider} from "./storeContext";
 
 
 
 export const renderTree = (state:StateType) => {
     debugger
     ReactDOM.render(
-        <StoreContext.Provider value={store}>
-            <App  />
-        </StoreContext.Provider>
+       <Provider store={store} >
+           <App  />
+       </Provider>
        ,
         document.getElementById('root')
     );
