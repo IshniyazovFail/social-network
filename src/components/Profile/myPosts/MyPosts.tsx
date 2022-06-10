@@ -1,23 +1,24 @@
 import React, {ChangeEvent} from "react";
 import {Post} from "./posts/Post";
 import s from "./MyPosts.module.css"
-import {ActionsTypes, AddNewMessageAC, AddPostAC, PostType} from "../../../Redux/State";
+import { PostType} from "../../../Redux/store";
 
 
 type myPostType = {
     postData: Array<PostType>
     message: string
-    dispatch: (action: ActionsTypes) => void
+    updateNewPosttext:(title:string)=>void
+    addPost:(message:string)=>void
 }
 
 export const MyPosts = (p: myPostType) => {
 
     const onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        p.dispatch(AddNewMessageAC(e.currentTarget.value))
+       p.updateNewPosttext(e.currentTarget.value)
     }
 
     const onclickSubmitHandler = () => {
-        p.dispatch(AddPostAC (p.message))
+        p.addPost (p.message)
     }
 
     return (
