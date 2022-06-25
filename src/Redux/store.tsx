@@ -4,16 +4,16 @@ import {ProfileReducer} from "./profile-reducer";
 import {MessagesReducer} from "./message-reducer";
 
 
-export type dialogType = {
+ type dialogType = {
     id: string
     name: string
     ava: string
 }
-export type messageType = {
+ type messageType = {
     id: string,
     message: string
 }
-export type PostType = {
+ type PostType = {
     id: string,
     message: string,
     likeCounts: number
@@ -100,15 +100,15 @@ export const store: storeType = {
     },
 }
 
-export const AddNewMessageAC = (text: string) => {
+ const AddNewMessageAC = (text: string) => {
     return {type: "ADD-NEW-MESSAGE", NewText: text} as const
 }
-export const AddPostAC = (text: string) => {
+ const AddPostAC = (text: string) => {
     return {type: "ADD-POST", postText: text} as const
 }
-export const AddNewDialogsAC = (newTitle: string) => {
+const AddNewDialogsAC = (newTitle: string) => {
     return {type: "ADD-NEW-DIALOGS", title: newTitle} as const
 }
-export const AddDialogsAC = (message: string) => {
+ const AddDialogsAC = (message: string) => {
     return {type: "ADD-DIALOGS", newMessage: message} as const
 }
