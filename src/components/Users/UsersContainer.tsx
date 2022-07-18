@@ -1,8 +1,8 @@
 import React from 'react';
 import {connect} from "react-redux";
-import {Dispatch} from "redux";
 import {
-    FallowAC, isFetchingAC,
+    FallowAC,
+    isFetchingAC,
     setCurrentPageAC,
     setTotalUsersCountAC,
     setUserAC,
@@ -12,8 +12,7 @@ import {
 import {AppStateType} from "../../Redux/redux-store";
 import axios from "axios";
 import {Users} from "./Users";
-import preloader from "./../../assets/images/tail-spin.svg"
-import style from "./Users.module.css"
+import {Preloader} from "../Preloader/Preloader";
 
 
 type mapStateToPropsType={
@@ -33,7 +32,7 @@ type mapDispatchToPropsType = {
 
 }
 export type UserPropsType= mapStateToPropsType & mapDispatchToPropsType
-export class UsersAPIComponent extends React.Component<UserPropsType,any>{
+export class UsersAPIComponent extends React.Component<UserPropsType>{
 
     componentDidMount()
     {  this.props.setIsFetching(true)
@@ -55,7 +54,7 @@ export class UsersAPIComponent extends React.Component<UserPropsType,any>{
     render(){
 
         return<>
-            {this.props.isFetching?<div className={style.preloader}><img alt='preloader' src={preloader}/></div>:null}
+            {this.props.isFetching?<Preloader/>:null}
             <Users
             users={this.props.users}
             UnFallow={this.props.UnFallow}
