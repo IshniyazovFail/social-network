@@ -21,3 +21,11 @@ display: flex;
 .span:hover{
     cursor: pointer;
 }
+.preloader{
+    display: flex;
+    width: 70px;
+    height: 70px;
+    position: absolute;
+    margin: 50%;
+
+}

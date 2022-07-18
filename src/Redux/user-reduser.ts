@@ -18,6 +18,7 @@ let initialState = {
     pageSize:10 ,
     totalUsersCount:0,
     currentPage:4,
+    isFetching:true
 }
 
 export type initialStateType = typeof initialState
@@ -40,6 +41,9 @@ export const UserReduser = (state: initialStateType = initialState, action: Acti
         case "SETTOTALCOUNT":{
             return {...state,totalUsersCount:action.totalCount}
         }
+        case "TOGGLE_IS_FETCHING":{
+            return {...state,isFetching: action.fetching}
+        }
 
         default:
             return state
@@ -47,7 +51,7 @@ export const UserReduser = (state: initialStateType = initialState, action: Acti
 }
 
 
-type ActioneType = UnFallowACType | FallowACType | setUserACType|setCurrentPageType|setTotalUsersCountACType
+type ActioneType = UnFallowACType | FallowACType | setUserACType|setCurrentPageType|setTotalUsersCountACType|isFetchingACType
 
 type FallowACType = ReturnType<typeof FallowAC>
 export const FallowAC = (userID: string) => {
@@ -89,4 +93,12 @@ export const setTotalUsersCountAC=(totalCount:number)=>{
         type:"SETTOTALCOUNT",
         totalCount
     }as const
+}
+
+type isFetchingACType=ReturnType<typeof isFetchingAC>
+export const isFetchingAC=(fetching:boolean)=>{
+   return {
+       type:"TOGGLE_IS_FETCHING",
+       fetching
+   }as const
 }

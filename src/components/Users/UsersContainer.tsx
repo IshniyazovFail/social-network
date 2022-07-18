@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from "react-redux";
 import {Dispatch} from "redux";
 import {
-    FallowAC,
+    FallowAC, isFetchingAC,
     setCurrentPageAC,
     setTotalUsersCountAC,
     setUserAC,
@@ -12,13 +12,16 @@ import {
 import {AppStateType} from "../../Redux/redux-store";
 import axios from "axios";
 import {Users} from "./Users";
+import preloader from "./../../assets/images/tail-spin.svg"
+import style from "./Users.module.css"
 
 
 type mapStateToPropsType={
     users:Array<UserType>,
     pageSize:number,
     totalUsersCount:number,
-    currentPage:number
+    currentPage:number,
+    isFetching:boolean
 }
 type mapDispatchToPropsType = {
     Fallow: (userID: string) => void
@@ -26,14 +29,16 @@ type mapDispatchToPropsType = {
     setUser:(user:Array<UserType>)=>void
     setCurrentPage:(page:number)=>void
     setTotalUsersCount:(totalCount:number)=>void
+    setIsFetching:(fetching:boolean)=>void
 
 }
 export type UserPropsType= mapStateToPropsType & mapDispatchToPropsType
 export class UsersAPIComponent extends React.Component<UserPropsType,any>{
 
     componentDidMount()
-    {
+    {  this.props.setIsFetching(true)
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then(response=>{
+            this.props.setIsFetching(false)
             this.props.setUser(response.data.items)
             this.props.setTotalUsersCount(response.data.totalCount)
         });
@@ -41,13 +46,17 @@ export class UsersAPIComponent extends React.Component<UserPropsType,any>{
     }
     onClickHandler=(pageNumber:number)=>{
         this.props.setCurrentPage(pageNumber)
+        this.props.setIsFetching(true)
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`).then(response=>{
+            this.props.setIsFetching(false)
             this.props.setUser(response.data.items)
         });
     }
     render(){
 
-        return <Users
+        return<>
+            {this.props.isFetching?<div className={style.preloader}><img alt='preloader' src={preloader}/></div>:null}
+            <Users
             users={this.props.users}
             UnFallow={this.props.UnFallow}
             Fallow={this.props.Fallow}
@@ -55,7 +64,7 @@ export class UsersAPIComponent extends React.Component<UserPropsType,any>{
             onClickHandler={this.onClickHandler}
             totalUsersCount={this.props.totalUsersCount}
             pageSize={this.props.pageSize}/>
-
+        </>
     }
 }
 const mapStateToProps = (state: AppStateType):mapStateToPropsType => {
@@ -63,11 +72,12 @@ const mapStateToProps = (state: AppStateType):mapStateToPropsType => {
         users: state.userPage.users,
         pageSize:state.userPage.pageSize,
         totalUsersCount:state.userPage.totalUsersCount,
-        currentPage:state.userPage.currentPage
+        currentPage:state.userPage.currentPage,
+        isFetching:state.userPage.isFetching
     }
 }
 
-
+/*
 const mapDispatchToProps = (dispatch: Dispatch):mapDispatchToPropsType => {
     return {
         Fallow: (userID: string) => {
@@ -84,9 +94,18 @@ const mapDispatchToProps = (dispatch: Dispatch):mapDispatchToPropsType => {
         },
         setTotalUsersCount:(totalCount:number)=>{
             dispatch(setTotalUsersCountAC(totalCount))
+        },
+        setIsFetching:(fetching:boolean)=>{
+            dispatch(isFetchingAC(fetching))
         }
     }
-}
+}*/
 
 
-export const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersAPIComponent)
+export const UsersContainer = connect(mapStateToProps, {
+    Fallow: FallowAC,
+    UnFallow: UnFallowAC,
+    setUser:setUserAC,
+    setCurrentPage:setCurrentPageAC,
+    setTotalUsersCount: setTotalUsersCountAC,
+    setIsFetching:isFetchingAC})(UsersAPIComponent)
