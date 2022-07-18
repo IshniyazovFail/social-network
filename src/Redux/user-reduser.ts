@@ -14,7 +14,10 @@ export type UserType = {
 
 
 let initialState = {
-    users: [] as Array<UserType>
+    users: [] as Array<UserType>,
+    pageSize:10 ,
+    totalUsersCount:0,
+    currentPage:4,
 }
 
 export type initialStateType = typeof initialState
@@ -31,6 +34,12 @@ export const UserReduser = (state: initialStateType = initialState, action: Acti
         case "SETUSER": {
             return {...state, users: action.users}
         }
+        case "SETCURRENTPAGE":{
+            return {...state,currentPage: action.page}
+        }
+        case "SETTOTALCOUNT":{
+            return {...state,totalUsersCount:action.totalCount}
+        }
 
         default:
             return state
@@ -38,7 +47,7 @@ export const UserReduser = (state: initialStateType = initialState, action: Acti
 }
 
 
-type ActioneType = UnFallowACType | FallowACType | setUserACType
+type ActioneType = UnFallowACType | FallowACType | setUserACType|setCurrentPageType|setTotalUsersCountACType
 
 type FallowACType = ReturnType<typeof FallowAC>
 export const FallowAC = (userID: string) => {
@@ -63,4 +72,21 @@ export const setUserAC = (users: Array<UserType>) => {
         type: "SETUSER",
         users
     } as const
+}
+
+
+type setCurrentPageType = ReturnType<typeof setCurrentPageAC>
+export const setCurrentPageAC=(page:number)=>{
+    return{
+        type:"SETCURRENTPAGE",
+        page
+    }as const
+}
+
+type setTotalUsersCountACType=ReturnType<typeof setTotalUsersCountAC>
+export const setTotalUsersCountAC=(totalCount:number)=>{
+    return{
+        type:"SETTOTALCOUNT",
+        totalCount
+    }as const
 }

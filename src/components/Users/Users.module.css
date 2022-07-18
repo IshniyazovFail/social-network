@@ -9,3 +9,15 @@ display: flex;
 .info{
     margin-left: 20px;
 }
+
+.selectedPage{
+    font-weight: bold;
+    font-size: 20px;
+}
+.selectedPage:hover{
+    cursor: pointer;
+}
+
+.span:hover{
+    cursor: pointer;
+}

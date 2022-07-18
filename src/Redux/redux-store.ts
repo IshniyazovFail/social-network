@@ -8,7 +8,7 @@ let rootReduser = combineReducers(
     {
         profilePage: ProfileReducer,
         messagesPage: MessagesReducer,
-        userPage:UserReduser
+        userPage:UserReduser,
     }
 )
 
