@@ -17,7 +17,7 @@ export const ProfileInfo = (props: ProfileContainerType) => {
                      src='https://torg-oboi.ru/upload/iblock/0e5/nochnoy-gorod-d-025-4-0kh2-7-m.jpg'/>
             </div>
             <div>
-                <img src={props.profile.photos.large}/>
+                <img src={props.profile.photos.small}/>
                 <div>{props.profile.fullName}</div>
                 <div>{props.profile.aboutMe}</div>
 

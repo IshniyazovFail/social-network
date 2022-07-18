@@ -56,13 +56,14 @@ export class UsersAPIComponent extends React.Component<UserPropsType>{
         return<>
             {this.props.isFetching?<Preloader/>:null}
             <Users
-            users={this.props.users}
+                {...this.props}
+          /*  users={this.props.users}
             UnFallow={this.props.UnFallow}
             Fallow={this.props.Fallow}
-            currentPage={this.props.currentPage}
+            currentPage={this.props.currentPage}*/
             onClickHandler={this.onClickHandler}
-            totalUsersCount={this.props.totalUsersCount}
-            pageSize={this.props.pageSize}/>
+         /*   totalUsersCount={this.props.totalUsersCount}
+            pageSize={this.props.pageSize}*//>
         </>
     }
 }
@@ -76,29 +77,6 @@ const mapStateToProps = (state: AppStateType):mapStateToPropsType => {
     }
 }
 
-/*
-const mapDispatchToProps = (dispatch: Dispatch):mapDispatchToPropsType => {
-    return {
-        Fallow: (userID: string) => {
-            dispatch(FallowAC(userID))
-        },
-        UnFallow: (userID: string) => {
-            dispatch(UnFallowAC(userID))
-        },
-        setUser:(user:Array<UserType>)=>{
-            dispatch(setUserAC(user))
-        },
-        setCurrentPage:(pageNumber:number)=>{
-            dispatch(setCurrentPageAC(pageNumber))
-        },
-        setTotalUsersCount:(totalCount:number)=>{
-            dispatch(setTotalUsersCountAC(totalCount))
-        },
-        setIsFetching:(fetching:boolean)=>{
-            dispatch(isFetchingAC(fetching))
-        }
-    }
-}*/
 
 
 export const UsersContainer = connect(mapStateToProps, {

@@ -1,15 +1,15 @@
 
 
 export type UserType = {
-    id: string
-    followed: boolean
     name: string
-    status: string
-    location: {
-        country: string
-        city: string
+    id: string
+    uniqueUrlName: string
+    photos: {
+        small:string,
+        large:string
     }
-    photoUrl: string
+    status: string
+    followed: boolean
 }
 
 

@@ -3,17 +3,12 @@ import style from "./Users.module.css";
 import {UserType} from "../../Redux/user-reduser";
 import photoUser from "../../assets/images/user2.png";
 import {NavLink} from "react-router-dom";
+import {UserPropsType} from "./UsersContainer";
 
 
 type UsersType = {
-    totalUsersCount: number
-    pageSize: number
-    onClickHandler: (p: number) => void
-    currentPage: number
-    UnFallow: (userID: string) => void
-    Fallow: (userID: string) => void
-    users: Array<UserType>
-}
+    onClickHandler: (p: number) => void }& UserPropsType
+
 export const Users = (props: UsersType) => {
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
     let pages = [];
@@ -36,7 +31,7 @@ export const Users = (props: UsersType) => {
                         <div className={style.avatar}>
                             <div>
                                 <NavLink to={'/profile/'+el.id}>
-                                <img alt='user' className={style.img} src={photoUser}/>
+                                <img alt='user' className={style.img} src={!el.photos.small ?  photoUser : el.photos.small }/>
                                 </NavLink>
                             </div>
                             {el.followed ? <button onClick={() => props.UnFallow(el.id)}>Unfollow</button> :
