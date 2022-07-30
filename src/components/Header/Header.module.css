@@ -1,6 +1,8 @@
 .header {
     grid-area: h;
     background-color: #010024;
+    display: flex;
+    justify-content: space-between;
 }
 
 .header img {
@@ -9,4 +11,15 @@
     border-radius: 50%;
     border:1px solid white;
     margin: 5px 20px;
+}
+.login{
+    float: right;
+    margin-right: 20px;
+    margin-top: 10px;
+    color: white;
+
+}
+.login a{
+color: white;
+    text-decoration: none;
 }

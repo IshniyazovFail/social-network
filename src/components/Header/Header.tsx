@@ -1,10 +1,16 @@
 import React from "react";
-import s from './Header.module.css';
+import style from './Header.module.css';
+import {NavLink} from "react-router-dom";
+import {HeaderPropsType} from "./headerContainer";
 
-export const Header = () => {
+
+export const Header = (props: HeaderPropsType) => {
     return (
-        <header className={s.header}>
+        <header className={style.header}>
             <img
                 src='https://mhcid.washington.edu/wp-content/uploads/2018/05/IntentionalFutures.png'/>
+            {props.isAuth ? <div className={style.login}>{props.login}</div> :
+                <div className={style.login}><NavLink to={'/login'}> Login</NavLink></div>}
+
         </header>)
 }
