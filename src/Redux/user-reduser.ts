@@ -18,7 +18,8 @@ let initialState = {
     pageSize:100 ,
     totalUsersCount:0,
     currentPage:1,
-    isFetching:true
+    isFetching:true,
+    followingOnProgress:[] as Array<string>
 }
 
 export type initialStateType = typeof initialState
@@ -42,8 +43,10 @@ export const UserReduser = (state: initialStateType = initialState, action: Acti
             return {...state,totalUsersCount:action.totalCount}
         }
         case "TOGGLE_IS_FETCHING":{
-            return {...state,isFetching: action.fetching}
+            return {...state,isFetching: action.isFetching}
         }
+        case "TOGGLE_IS_FOLLOWING_PROGRESS":
+            return {...state,followingOnProgress: action.isFetching? [...state.followingOnProgress,action.userID]:state.followingOnProgress.filter(id=>id!==action.userID)}
 
         default:
             return state
@@ -51,7 +54,7 @@ export const UserReduser = (state: initialStateType = initialState, action: Acti
 }
 
 
-type ActioneType = UnFallowACType | FallowACType | setUserACType|setCurrentPageType|setTotalUsersCountACType|isFetchingACType
+type ActioneType = UnFallowACType | FallowACType | setUserACType|setCurrentPageType|setTotalUsersCountACType|isFetchingACType|toggleFollowingProgressType
 
 type FallowACType = ReturnType<typeof FallowAC>
 export const FallowAC = (userID: string) => {
@@ -96,9 +99,18 @@ export const setTotalUsersCountAC=(totalCount:number)=>{
 }
 
 type isFetchingACType=ReturnType<typeof isFetchingAC>
-export const isFetchingAC=(fetching:boolean)=>{
+export const isFetchingAC=(isFetching:boolean)=>{
    return {
        type:"TOGGLE_IS_FETCHING",
-       fetching
+       isFetching
    }as const
+}
+
+type toggleFollowingProgressType=ReturnType<typeof toggleFollowingProgressAC>
+export const toggleFollowingProgressAC=(isFetching:boolean,userID:string)=>{
+    return{
+        type:"TOGGLE_IS_FOLLOWING_PROGRESS",
+        userID,
+        isFetching
+    }as const
 }

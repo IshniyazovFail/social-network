@@ -35,22 +35,26 @@ export const Users = (props: UsersType) => {
                                 <img alt='user' className={style.img} src={!el.photos.small ?  photoUser : el.photos.small }/>
                                 </NavLink>
                             </div>
-                            {el.followed ? <button onClick={() => {
-
+                            {el.followed ? <button disabled={props.followingOnProgress.some(id=>id===el.id)} onClick={() => {
+                                props.toggleFollowingProgress(true,el.id)
                                     usersAPI.unfollow(el.id).then(data => {
                                             if(data.resultCode === 0){
                                                 props.UnFallow(el.id)
+
                                             }
+                                        props.toggleFollowingProgress(false,el.id)
                                         })
                                 }
 
 
                             }>Unfollow</button> :
-                                <button onClick={() =>{
+                                <button disabled={props.followingOnProgress.some(id=>id===el.id)} onClick={() =>{
+                                    props.toggleFollowingProgress(true,el.id)
                                   usersAPI.follow(el.id).then(data => {
                                         if(data.resultCode === 0){
                                             props.Fallow(el.id)
                                         }
+                                      props.toggleFollowingProgress(false,el.id)
                                     })
                                 }
 

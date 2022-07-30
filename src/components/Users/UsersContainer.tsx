@@ -5,7 +5,7 @@ import {
     isFetchingAC,
     setCurrentPageAC,
     setTotalUsersCountAC,
-    setUserAC,
+    setUserAC, toggleFollowingProgressAC,
     UnFallowAC,
     UserType
 } from "../../Redux/user-reduser";
@@ -20,7 +20,8 @@ type mapStateToPropsType = {
     pageSize: number,
     totalUsersCount: number,
     currentPage: number,
-    isFetching: boolean
+    isFetching: boolean,
+    followingOnProgress:Array<string>
 }
 type mapDispatchToPropsType = {
     Fallow: (userID: string) => void
@@ -29,6 +30,7 @@ type mapDispatchToPropsType = {
     setCurrentPage: (page: number) => void
     setTotalUsersCount: (totalCount: number) => void
     setIsFetching: (fetching: boolean) => void
+    toggleFollowingProgress:(fetching: boolean,userId:string)=>void
 
 }
 export type UserPropsType = mapStateToPropsType & mapDispatchToPropsType
@@ -73,7 +75,9 @@ const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
         pageSize: state.userPage.pageSize,
         totalUsersCount: state.userPage.totalUsersCount,
         currentPage: state.userPage.currentPage,
-        isFetching: state.userPage.isFetching
+        isFetching: state.userPage.isFetching,
+        followingOnProgress:state.userPage.followingOnProgress
+
     }
 }
 
@@ -84,5 +88,6 @@ export const UsersContainer = connect(mapStateToProps, {
     setUser: setUserAC,
     setCurrentPage: setCurrentPageAC,
     setTotalUsersCount: setTotalUsersCountAC,
-    setIsFetching: isFetchingAC
+    setIsFetching: isFetchingAC,
+    toggleFollowingProgress:toggleFollowingProgressAC
 })(UsersAPIComponent)
