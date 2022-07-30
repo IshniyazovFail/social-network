@@ -17,7 +17,7 @@ let initialState = {
     users: [] as Array<UserType>,
     pageSize:100 ,
     totalUsersCount:0,
-    currentPage:4,
+    currentPage:1,
     isFetching:true
 }
 
@@ -35,10 +35,10 @@ export const UserReduser = (state: initialStateType = initialState, action: Acti
         case "SETUSER": {
             return {...state, users: action.users}
         }
-        case "SETCURRENTPAGE":{
+        case "SET_CURRENT_PAGE":{
             return {...state,currentPage: action.page}
         }
-        case "SETTOTALCOUNT":{
+        case "SET_TOTAL_COUNT":{
             return {...state,totalUsersCount:action.totalCount}
         }
         case "TOGGLE_IS_FETCHING":{
@@ -82,7 +82,7 @@ export const setUserAC = (users: Array<UserType>) => {
 type setCurrentPageType = ReturnType<typeof setCurrentPageAC>
 export const setCurrentPageAC=(page:number)=>{
     return{
-        type:"SETCURRENTPAGE",
+        type:"SET_CURRENT_PAGE",
         page
     }as const
 }
@@ -90,7 +90,7 @@ export const setCurrentPageAC=(page:number)=>{
 type setTotalUsersCountACType=ReturnType<typeof setTotalUsersCountAC>
 export const setTotalUsersCountAC=(totalCount:number)=>{
     return{
-        type:"SETTOTALCOUNT",
+        type:"SET_TOTAL_COUNT",
         totalCount
     }as const
 }

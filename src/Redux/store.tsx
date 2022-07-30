@@ -1,10 +1,9 @@
 import React from "react";
 import {v1} from "uuid";
-import {ProfileReducer} from "./profile-reducer";
 import {MessagesReducer} from "./message-reducer";
 
 
- type dialogType = {
+type dialogType = {
     id: string
     name: string
     ava: string
@@ -94,7 +93,6 @@ export const store: storeType = {
     },
 
     dispatch(action) {
-     /*   this._state.profilePage = ProfileReducer(this._state.profilePage, action)*/
         this._state.messagesPage = MessagesReducer(this._state.messagesPage, action)
         this._onChange(store.getState())
     },
