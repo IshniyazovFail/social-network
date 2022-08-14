@@ -1,4 +1,6 @@
 import {v1} from "uuid";
+import {Dispatch} from "redux";
+import {usersAPI} from "../api/api";
 
 export type PostType = {
     id: string,
@@ -96,3 +98,6 @@ export const setUserProfileAC = (profile:ProfileUserType) => {
     } as const
 }
 
+export const getProfileThunkCreator=(userId:string)=>(dispatch:Dispatch)=>{
+    usersAPI.getProfile(userId).then(data=>dispatch(setUserProfileAC(data)))
+}

@@ -1,3 +1,6 @@
+import {usersAPI} from "../api/api";
+import {Dispatch} from "redux";
+
 let initialState:authReduserType= {
     id: null,
     login: null,
@@ -39,4 +42,14 @@ export const setUserDataAC = (id:number|null,login:string|null,email:string|null
             email
         }
     } as const
+}
+
+export const getAuthMeThunkCreator=()=>(dispatch:Dispatch)=>{
+    usersAPI.getAuthMe().then(data => {
+
+        if (data.resultCode === 0) {
+            let {id, login, email} = data.data
+            dispatch(setUserDataAC(id, login, email))
+        }
+    });
 }
