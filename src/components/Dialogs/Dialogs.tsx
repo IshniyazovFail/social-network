@@ -14,7 +14,7 @@ export const Dialogs = (p: dialogsPropsType) => {
     const onChangeHandlerDialogs = (e: ChangeEvent<HTMLTextAreaElement>) => {
         p.AddDialogs(e.currentTarget.value)
     }
-if(!p.auth)return <Redirect to={'/login'}/>
+/*if(!p.auth)return <Redirect to={'/login'}/>*/
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItem}>

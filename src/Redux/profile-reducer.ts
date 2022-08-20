@@ -1,6 +1,6 @@
 import {v1} from "uuid";
 import {Dispatch} from "redux";
-import {usersAPI} from "../api/api";
+import {profileAPI, usersAPI} from "../api/api";
 
 export type PostType = {
     id: string,
@@ -58,12 +58,12 @@ let initialState = {
             large: '',
         }
     },
-    status: ''
+    status: '----'
 }
 
 export type initialStateType = typeof initialState
 
-type ActionsTypes = setUserProfileACType | AddPostACType | AddNewMessageACType
+type ActionsTypes = setUserProfileACType | AddPostACType | AddNewMessageACType|setProfileStatusType
 
 export const ProfileReducer = (state: initialStateType = initialState, action: ActionsTypes) => {
     switch (action.type) {
@@ -74,6 +74,8 @@ export const ProfileReducer = (state: initialStateType = initialState, action: A
             return {...state, messageForNewPost: action.NewText};
         case "SET_USER_PROFILE":
             return {...state,profile:action.profile}
+        case "SET_PROFILE_STATUS":
+            return {...state,status:action.status}
         default:
             return state;
     }
@@ -94,10 +96,26 @@ export const setUserProfileAC = (profile:ProfileUserType) => {
     return {
         type: "SET_USER_PROFILE",
         profile
-
     } as const
+}
+type setProfileStatusType=ReturnType<typeof setProfileStatus>
+export const setProfileStatus=(status:string )=>{
+    return{
+        type:"SET_PROFILE_STATUS",
+        status
+    }as const
 }
 
 export const getProfileThunkCreator=(userId:string)=>(dispatch:Dispatch)=>{
     usersAPI.getProfile(userId).then(data=>dispatch(setUserProfileAC(data)))
+}
+
+export const getProfileStatusThunkCreator=(userId:string)=>(dispatch:Dispatch)=>{
+    profileAPI.getProfileStatus(userId).
+    then(response=>dispatch(setProfileStatus(response.data)))
+}
+
+export const updateProfileStatusThunkCreator=(status:string)=>(dispatch:Dispatch)=>{
+    profileAPI.UpdateProfileStatus(status).
+    then(response=>dispatch(setProfileStatus(status)))
 }

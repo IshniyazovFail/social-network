@@ -8,7 +8,7 @@ import {ProfileContainerType} from "./ProfileContainer";
 export const Profile = (props:ProfileContainerType) => {
     return (
         <div className={style.body}>
-            <ProfileInfo {...props}/>
+            <ProfileInfo {...props} status={props.status}/>
             <MyPostContainer/>
         </div>
     )
