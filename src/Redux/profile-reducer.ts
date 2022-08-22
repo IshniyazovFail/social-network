@@ -58,7 +58,7 @@ let initialState = {
             large: '',
         }
     },
-    status: '----'
+    status: ''
 }
 
 export type initialStateType = typeof initialState
