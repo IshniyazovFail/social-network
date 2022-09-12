@@ -93,7 +93,7 @@ export const store: storeType = {
     },
 
     dispatch(action) {
-        this._state.messagesPage = MessagesReducer(this._state.messagesPage, action)
+      /*  this._state.messagesPage = MessagesReducer(this._state.messagesPage, action)*/
         this._onChange(store.getState())
     },
 }

@@ -9,7 +9,6 @@ export const Message = (p:MessageType) => {
     return (
         <div className={s.body}>
             <div className={s.message}>{p.message}</div>
-            <div className={s.myMessage}>{p.message}</div>
         </div>
 
     )

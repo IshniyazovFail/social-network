@@ -5,7 +5,7 @@ import {Field, InjectedFormProps, reduxForm} from "redux-form";
 export type FormDataType={
     login:string
     password:string
-    rememberme:boolean
+    rememberMe:boolean
 }
  export const LoginForm:React.FC<InjectedFormProps<FormDataType>> = (props) => {
     return (
@@ -17,7 +17,7 @@ export type FormDataType={
                 <Field name="password" component="input"  placeholder={'Password'}/>
             </div>
             <div>
-                <Field name="rememberme" component="input"  type="checkbox"/>remember me
+                <Field name="rememberMe" component="input"  type="checkbox"/>remember me
             </div>
             <div>
                 <button>login</button>

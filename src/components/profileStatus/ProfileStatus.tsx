@@ -9,12 +9,10 @@ export class ProfileStatus extends React.Component<ProfileStatusType> {
 state= {
     editMode: false,
     status:this.props.status
-
 }
     activateEditMode=()=>{
         this.setState({
             editMode: true,
-
         })
     }
     deactivateEditMode=()=>{
@@ -29,7 +27,8 @@ state= {
         })
     }
     componentDidUpdate(prevProps: Readonly<ProfileStatusType>, prevState: Readonly<{}>) {
-    if(this.props.status!==this.state.status){
+
+    if(prevProps.status!==this.props.status){
         this.setState({
             status: this.props.status
         })
@@ -37,12 +36,13 @@ state= {
     }
 
     render() {
+        console.log(this.props.status)
         return (
             <div>
                 {this.state.editMode ?
                     <div><input onChange={this.onChangeHandler} autoFocus onBlur={this.deactivateEditMode} value={this.state.status}/>
                     </div> :
-                    <div><span onDoubleClick={this.activateEditMode}>{this.state.status||"--"}</span></div>
+                    <div><span onDoubleClick={this.activateEditMode}>{this.state.status||'---'}</span></div>
                 }
             </div>
         );

@@ -9,9 +9,20 @@
 
 
 .messages {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     padding: 20px;
     color: #010024;
     font-weight: 600;
+}
+.form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+
+
 }
 .text{
 margin-top: 20px;
