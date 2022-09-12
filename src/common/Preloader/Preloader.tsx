@@ -1,5 +1,5 @@
 import React from 'react';
-import style from "../Users/Users.module.css";
+import style from "../../components/Users/Users.module.css";
 import preloader from "../../assets/images/tail-spin.svg";
 
 export const Preloader = () => {

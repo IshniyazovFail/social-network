@@ -2,7 +2,7 @@ import s from "./ProfileInfo.module.css";
 import React from "react";
 import {AvaAndDescription} from "./AvaAndDescription/AvaAndDescription";
 import {ProfileContainerType} from "../ProfileContainer";
-import {Preloader} from "../../Preloader/Preloader";
+import {Preloader} from "../../../common/Preloader/Preloader";
 import {ProfileStatus} from "../../profileStatus/ProfileStatus";
 
 

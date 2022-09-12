@@ -1,16 +1,19 @@
 import React from 'react';
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
+import {PostTextaria} from "../../../common/FormControls/FormControls";
+import {maxValue, required} from "../../../utils/validators";
 
 export type FormPostType={
     post:string
 }
+const maxLength=maxValue(10)
 export const FormPost:React.FC<InjectedFormProps<FormPostType>> = (props) => {
     return (
         <div>
             <h3>My posts</h3>
             <form onSubmit={props.handleSubmit}>
                 <div>
-                    <Field name={'post'} component={'input'} type={'text'}/>
+                    <Field validate={[required,maxLength]} name={'post'} component={PostTextaria} placeholder={'new post'}/>
                 </div>
                 <div>
                     <button >Submit</button>

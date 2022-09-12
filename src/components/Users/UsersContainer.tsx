@@ -9,7 +9,7 @@ import {
 } from "../../Redux/user-reduser";
 import {AppStateType} from "../../Redux/redux-store";
 import {Users} from "./Users";
-import {Preloader} from "../Preloader/Preloader";
+import {Preloader} from "../../common/Preloader/Preloader";
 import {WithAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
 
