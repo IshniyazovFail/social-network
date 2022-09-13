@@ -1,7 +1,7 @@
 import React from 'react';
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import {maxValue, required} from "../../utils/validators";
-import { MessagesTextaria} from "../../common/FormControls/FormControls";
+import {UniversalForm} from "../../common/FormControls/FormControls";
 
 export type DialogPostType={
     post:string
@@ -12,7 +12,7 @@ export const DialogPost:React.FC<InjectedFormProps<DialogPostType>> = (props) =>
         <div>
             <form onSubmit={props.handleSubmit}>
                 <div>
-                    <Field validate={[required,maxLength]} name={'post'} component={MessagesTextaria} placeholder={'enter a message'} />
+                    <Field formtype='textarea' validate={[required,maxLength]} name={'post'} component={UniversalForm} placeholder={'enter a message'} />
                 </div>
                 <div>
                     <button >Submit</button>

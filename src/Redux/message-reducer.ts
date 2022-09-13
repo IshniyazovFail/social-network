@@ -41,8 +41,8 @@ let initialState ={
 }
 
 export type initialStateType = typeof initialState
-
-export const MessagesReducer = (state: initialStateType =initialState, action: ActionsTypes) => {
+export type MessagesActionsTypes=AddNewDialogsACType
+export const MessagesReducer = (state: initialStateType =initialState, action: MessagesActionsTypes) => {
     switch (action.type) {
         case  "ADD-NEW-DIALOGS":
             let newDialogs: messageType = {id: v1(), message: action.title}
@@ -53,6 +53,7 @@ export const MessagesReducer = (state: initialStateType =initialState, action: A
 
 }
 
+type AddNewDialogsACType=ReturnType<typeof AddNewDialogsAC>
 export const AddNewDialogsAC = (newTitle: string) => {
     return {type: "ADD-NEW-DIALOGS", title: newTitle} as const
 }

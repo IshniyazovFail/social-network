@@ -62,9 +62,9 @@ let initialState = {
 
 export type initialStateType = typeof initialState
 
-type ActionsTypes = setUserProfileACType | AddPostACType  | setProfileStatusType
+export type ProfileActionsTypes = setUserProfileACType | AddPostACType  | setProfileStatusType
 
-export const ProfileReducer = (state: initialStateType = initialState, action: ActionsTypes) => {
+export const ProfileReducer = (state: initialStateType = initialState, action: ProfileActionsTypes) => {
     switch (action.type) {
         case "ADD-POST":
             const newPost: PostType = {id: v1(), message: action.postText, likeCounts: 0}

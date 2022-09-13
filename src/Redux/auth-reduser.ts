@@ -1,5 +1,7 @@
-import {usersAPI} from "../api/api";
+import {authAPI, usersAPI} from "../api/api";
 import {Dispatch} from "redux";
+import {AppThunk} from "./redux-store";
+import {stopSubmit} from "redux-form";
 
 let initialState:authReduserType= {
     id: null,
@@ -15,11 +17,10 @@ export type authReduserType = {
     isAuth:boolean
 }
 
-export const authReduser = (state: authReduserType = initialState, action: actionType) => {
+export const authReduser = (state: authReduserType = initialState, action: AuthActionType) => {
     switch (action.type) {
         case "SET_USER_DATA": {
-            return {...state,
-                ...action.data, isAuth:true}
+            return {...state, ...action.payload}
         }
 
         default:
@@ -29,17 +30,18 @@ export const authReduser = (state: authReduserType = initialState, action: actio
 
 
 
-type actionType = setUserDataACType
+export type AuthActionType = setUserDataACType
 
 
 type setUserDataACType = ReturnType<typeof setUserDataAC>
-export const setUserDataAC = (id:number|null,login:string|null,email:string|null) => {
+export const setUserDataAC = (id:number|null,login:string|null,email:string|null,isAuth:boolean) => {
     return {
         type: "SET_USER_DATA",
-        data: {
+        payload: {
             id,
             login,
-            email
+            email,
+            isAuth
         }
     } as const
 }
@@ -49,7 +51,25 @@ export const getAuthMeThunkCreator=()=>(dispatch:Dispatch)=>{
 
         if (data.resultCode === 0) {
             let {id, login, email} = data.data
-            dispatch(setUserDataAC(id, login, email))
+            dispatch(setUserDataAC(id, login, email,true))
         }
     });
+}
+
+export const loginThunkCreator=(email:string,password:string,rememberMe:boolean=false):AppThunk=>(dispatch)=>{
+    authAPI.login(email,password,rememberMe).then(res=>{
+        if(res.data.resultCode===0){
+            dispatch(getAuthMeThunkCreator())
+        } else{
+            let message=res.data.messages.length>0?res.data.messages[0]:"Error message"
+            dispatch(stopSubmit("login",{_error:message}))
+        }
+    })
+}
+export const logoutThunkCreator=()=>(dispatch:Dispatch<any>)=>{
+    authAPI.logout().then(res=>{
+        if(res.data.resultCode===0){
+            dispatch(setUserDataAC(null, null, null,false))
+        }
+    })
 }

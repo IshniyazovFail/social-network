@@ -1,7 +1,7 @@
 import React from "react";
 import {Header} from "./Header";
 import {connect} from "react-redux";
-import {getAuthMeThunkCreator, setUserDataAC} from "../../Redux/auth-reduser";
+import {getAuthMeThunkCreator, logoutThunkCreator, setUserDataAC} from "../../Redux/auth-reduser";
 import {AppStateType} from "../../Redux/redux-store";
 
 export type HeaderPropsType = MapDispatchToPropsType & MapStateToPropsType;
@@ -27,9 +27,10 @@ const MapStateToProps = (state:AppStateType): MapStateToPropsType => {
     }
 }
 type MapDispatchToPropsType = {
-    setUserData: (id: number, login: string, email: string) => void,
-    getAuthMeThunkCreator:()=>void
+    setUserData: (id: number, login: string, email: string,isAuth:boolean) => void,
+    getAuthMeThunkCreator:()=>void,
+    logOut:()=>void
 }
 
 
-export default connect(MapStateToProps, {setUserData:setUserDataAC,getAuthMeThunkCreator:getAuthMeThunkCreator}  )(HeaderContainer)
+export default connect(MapStateToProps, {setUserData:setUserDataAC,getAuthMeThunkCreator:getAuthMeThunkCreator,logOut:logoutThunkCreator}  )(HeaderContainer)

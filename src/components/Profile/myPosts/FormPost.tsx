@@ -1,6 +1,6 @@
 import React from 'react';
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
-import {PostTextaria} from "../../../common/FormControls/FormControls";
+import {UniversalForm} from "../../../common/FormControls/FormControls";
 import {maxValue, required} from "../../../utils/validators";
 
 export type FormPostType={
@@ -13,7 +13,7 @@ export const FormPost:React.FC<InjectedFormProps<FormPostType>> = (props) => {
             <h3>My posts</h3>
             <form onSubmit={props.handleSubmit}>
                 <div>
-                    <Field validate={[required,maxLength]} name={'post'} component={PostTextaria} placeholder={'new post'}/>
+                    <Field formtype='textarea' validate={[required,maxLength]} name={'post'} component={UniversalForm} placeholder={'new post'}/>
                 </div>
                 <div>
                     <button >Submit</button>
