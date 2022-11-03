@@ -4,6 +4,7 @@ import {AvaAndDescription} from "./AvaAndDescription/AvaAndDescription";
 import {ProfileContainerType} from "../ProfileContainer";
 import {Preloader} from "../../../common/Preloader/Preloader";
 import {ProfileStatus} from "../../profileStatus/ProfileStatus";
+import ProfileStatusWithHooks from "../../profileStatus/ProfileStatusWithHooks";
 
 
 
@@ -26,7 +27,8 @@ export const ProfileInfo = (props: ProfileContainerType) => {
             </div>
             <div className={s.descriptionBlock}>
                 <AvaAndDescription/>
-                <ProfileStatus updateStatus={props.updateProfileStatus} status={props.status}/>
+                {/*<ProfileStatus updateStatus={props.updateProfileStatus} status={props.status}/>*/}
+                <ProfileStatusWithHooks updateStatus={props.updateProfileStatus} status={props.status}/>
             </div>
         </div>
     )
