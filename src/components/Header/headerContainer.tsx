@@ -7,9 +7,7 @@ import {AppStateType} from "../../Redux/redux-store";
 export type HeaderPropsType = MapDispatchToPropsType & MapStateToPropsType;
 
 class HeaderContainer extends React.Component<HeaderPropsType> {
-    componentDidMount() {
-        this.props.getAuthMeThunkCreator()
-    }
+
 
     render() {
         return <Header {...this.props}/>
@@ -28,9 +26,8 @@ const MapStateToProps = (state:AppStateType): MapStateToPropsType => {
 }
 type MapDispatchToPropsType = {
     setUserData: (id: number, login: string, email: string,isAuth:boolean) => void,
-    getAuthMeThunkCreator:()=>void,
     logOut:()=>void
 }
 
 
-export default connect(MapStateToProps, {setUserData:setUserDataAC,getAuthMeThunkCreator:getAuthMeThunkCreator,logOut:logoutThunkCreator}  )(HeaderContainer)
+export default connect(MapStateToProps, {setUserData:setUserDataAC,logOut:logoutThunkCreator}  )(HeaderContainer)

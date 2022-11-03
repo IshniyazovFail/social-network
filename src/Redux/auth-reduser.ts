@@ -1,7 +1,9 @@
 import {authAPI, usersAPI} from "../api/api";
 import {Dispatch} from "redux";
-import {AppThunk} from "./redux-store";
+import {AppStateType, AppThunk} from "./redux-store";
 import {stopSubmit} from "redux-form";
+import {ThunkAction} from "redux-thunk";
+import {appActionType} from "./APP-reduser";
 
 let initialState:authReduserType= {
     id: null,
@@ -11,7 +13,7 @@ let initialState:authReduserType= {
 }
 
 export type authReduserType = {
-    id:number|null,
+    id:null|number,
     login:string|null,
     email:string|null,
     isAuth:boolean
@@ -73,3 +75,4 @@ export const logoutThunkCreator=()=>(dispatch:Dispatch<any>)=>{
         }
     })
 }
+export type AuthReduserThunkType =ThunkAction<void, AppStateType, unknown, AuthActionType|appActionType>
